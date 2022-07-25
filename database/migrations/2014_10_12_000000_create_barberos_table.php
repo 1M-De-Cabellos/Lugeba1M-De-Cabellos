@@ -16,8 +16,7 @@ return new class extends Migration
         Schema::create('barberos', function (Blueprint $table) {
             $table->id();
             $table->string('nombres', 40);
-            $table->string('apellido_p', 20);
-            $table->string('apellido_m', 20);
+            $table->string('apellidos', 20);
             $table->char('num_telefono', 10);
             $table->string('email')->unique();
             $table->string('password');

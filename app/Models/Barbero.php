@@ -19,8 +19,7 @@ class Barbero extends Authenticatable
      */
     protected $fillable = [
         'nombres',
-        'apellido_p',
-        'apellido_m',
+        'apellidos',
         'num_telefono',
         'email',
         'password',
