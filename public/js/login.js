@@ -48,3 +48,25 @@ $('#form-registrarme').submit(function(e){
         toast.show();
     }
 });
+$('#form-login').submit(function(e){
+    e.preventDefault();
+    var data = $(this).serialize();
+    $.ajax({
+        'type': 'POST',
+        'url': '/login',
+        'data': data,
+        success: function(response){
+            var respuesta = JSON.parse(response);
+            $('#icono').addClass(respuesta.icono+' '+respuesta.color);
+            $('#titulo').html(respuesta.titulo);
+            $('#titulo').addClass('me-auto '+respuesta.color);
+            $('#mensaje').html(respuesta.mensaje);
+            const toastLiveExample = document.getElementById('liveToast');
+            const toast = new bootstrap.Toast(toastLiveExample);
+            toast.show();
+            if(respuesta.icono == 'icofont-ui-check'){
+                window.location.href = '/';
+            }
+        }
+    });
+});

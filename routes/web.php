@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientesController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +23,4 @@ Route::get('/login', function () {
 });
 //routes clientes
 Route::post('/add-clientes', [ClientesController::class, 'store']);
+Route::post('/login', [LoginController::class, 'login']);
