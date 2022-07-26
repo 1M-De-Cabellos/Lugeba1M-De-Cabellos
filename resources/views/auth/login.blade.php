@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <title>Document</title>
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/config.css') }}">
@@ -57,7 +58,7 @@
                                 <label for="" class="form-label text-white">Nombres</label>
                                 <div class="input-group mb-3">
                                   <span class="input-group-text" id="basic-addon2"><i class="icofont-sound-wave"></i></span>
-                                  <input type="text" class="form-control" placeholder="Nombres" required autocomplete="off">
+                                  <input type="text" class="form-control" name="nombres" placeholder="Nombres" required autocomplete="off">
                                 </div>
                             </div>
                         </div>
@@ -66,7 +67,7 @@
                                 <label for="" class="form-label text-white">Apellidos</label>
                                 <div class="input-group mb-3">
                                   <span class="input-group-text" id="basic-addon2"><i class="icofont-sound-wave"></i></span>
-                                  <input type="text" class="form-control" placeholder="Apellidos" required autocomplete="off">
+                                  <input type="text" class="form-control" name="apellidos" placeholder="Apellidos" required autocomplete="off">
                                 </div>
                             </div>
                         </div>
@@ -75,7 +76,7 @@
                                 <label for="" class="form-label text-white">F.Nacimiento</label>
                                 <div class="input-group mb-3">
                                   <span class="input-group-text" id="basic-addon2"><i class="icofont-calendar"></i></span>
-                                  <input type="date" class="form-control" required autocomplete="off">
+                                  <input type="date" class="form-control" name="fecha_nac" required autocomplete="off">
                                 </div>
                             </div>
                         </div>
@@ -84,7 +85,7 @@
                                 <label for="" class="form-label text-white">Télefono</label>
                                 <div class="input-group mb-3">
                                   <span class="input-group-text" id="basic-addon2"><i class="icofont-phone"></i></span>
-                                  <input type="text" class="form-control" placeholder="Télefono" required autocomplete="off">
+                                  <input type="text" class="form-control" name="num_telefonico" placeholder="Télefono" required autocomplete="off">
                                 </div>
                             </div>
                         </div>
@@ -93,7 +94,7 @@
                                 <label for="" class="form-label text-white">Correo</label>
                                 <div class="input-group mb-3">
                                   <span class="input-group-text" id="basic-addon2"><i class="icofont-mail"></i></span>
-                                  <input type="email" class="form-control" placeholder="Correo" required autocomplete="off">
+                                  <input type="email" class="form-control" name="email" placeholder="Correo" required autocomplete="off">
                                 </div>
                             </div>
                         </div>
@@ -102,7 +103,7 @@
                                 <label for="exampleInputEmail1" class="form-label text-white">Contraseña</label>
                                 <div class="input-group mb-3">
                                   <span class="input-group-text" id="basic-addon2"><i class="icofont-ui-password"></i></span>
-                                  <input type="password" class="form-control" placeholder="Contraseña" required autocomplete="off">
+                                  <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña" required autocomplete="off">
                                 </div>
                             </div>
                         </div>
@@ -111,7 +112,7 @@
                                 <label for="exampleInputEmail1" class="form-label text-white">Repetir contraseña</label>
                                 <div class="input-group mb-3">
                                   <span class="input-group-text" id="basic-addon2"><i class="icofont-ui-password"></i></span>
-                                  <input type="password" class="form-control" placeholder="Repetir contraseña" required autocomplete="off">
+                                  <input type="password" class="form-control" name="password1" id="password1" placeholder="Repetir contraseña" required autocomplete="off">
                                 </div>
                             </div>
                         </div>
@@ -121,10 +122,32 @@
             </div>
         </div>
     </div>
+    <!-- Tostada -->
+    <div class="toast-container position-fixed top-0 end-0 p-3">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <i class="" id="icono"></i>
+                <strong class="" id="titulo"></strong>
+                <small>Justo ahora</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body" id="mensaje">
+                
+            </div>
+        </div>
+    </div>
     <script src="{{ asset('js/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('js/popper.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/login.js') }}"></script>
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
 </body>
 
 </html>

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombres', 40);
             $table->string('apellidos', 20);
-            $table->char('num_telefono', 10);
+            $table->char('num_telefonico', 10);
             $table->string('email')->unique();
             $table->string('password');
             $table->rememberToken();

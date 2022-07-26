@@ -12,7 +12,7 @@ class Cliente extends Model
         'nombres',
         'apellidos',
         'fecha_nac',
-        'num_telefono',
+        'num_telefonico',
         'email',
         'password',
     ];

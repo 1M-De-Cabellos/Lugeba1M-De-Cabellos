@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ClientesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,3 +20,5 @@ Route::get('/', function () {
 Route::get('/login', function () {
     return view('auth.login');
 });
+//routes clientes
+Route::post('/add-clientes', [ClientesController::class, 'store']);
