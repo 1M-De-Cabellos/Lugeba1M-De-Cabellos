@@ -19,8 +19,8 @@ return new class extends Migration
             $table->unsignedBigInteger('barbero_id');
             $table->unsignedBigInteger('pago_id');
             $table->unsignedBigInteger('servicio_id');
+            $table->unsignedBigInteger('horario_id');
             $table->date('fecha');
-            $table->time('hora');
             $table->double('precio');
             $table->char('estado', 1);
             $table->timestamps();
@@ -28,6 +28,7 @@ return new class extends Migration
             $table->foreign('barbero_id')->references('id')->on('barberos')->onDelete('cascade');
             $table->foreign('pago_id')->references('id')->on('pagos')->onDelete('cascade');
             $table->foreign('servicio_id')->references('id')->on('servicios')->onDelete('cascade');
+            $table->foreign('horario_id')->references('id')->on('horarios')->onDelete('cascade');
         });
     }
 

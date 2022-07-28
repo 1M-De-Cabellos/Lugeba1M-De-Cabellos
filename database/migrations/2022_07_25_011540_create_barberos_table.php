@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('barberos', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('servicio_id');
             $table->string('nombres', 40);
             $table->string('apellidos', 20);
             $table->char('num_telefonico', 10);
@@ -22,6 +23,7 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            $table->foreign('servicio_id')->references('id')->on('servicios')->onDelete('cascade');
         });
     }
 

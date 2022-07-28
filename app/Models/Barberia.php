@@ -10,12 +10,12 @@ class Barberia extends Model
     use HasFactory;
     protected $fillable = [
         'nombre',
+        'domingo',
         'lunes',
         'martes',
         'miercoles',
         'jueves',
         'sabado',
-        'domingo',
         'estado',
         'municipio',
         'cp',
