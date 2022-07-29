@@ -20,23 +20,33 @@ use App\Http\Controllers\CitasController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 Route::get('/login', function () {
     return view('auth.login');
-});
+})->name('login');
 //routes clientes
 Route::post('/add-clientes', [ClientesController::class, 'store']);
 Route::post('/login', [LoginController::class, 'login']);
-//routes servicios
-Route::get('/getServices', [ServiciosController::class, 'getServices']);
-Route::get('/getServicesPrice/{id}', [ServiciosController::class, 'getServicesPrice']);
-//routes barberos
-Route::get('/getBarbers/{id}', [BarberosController::class, 'getBarbers']);
-//routes pagos
-Route::get('/getPayments', [PagosController::class, 'getPayments']);
-//routes hoararios
-Route::get('/getSchedules/{id}/{id2}/{dia}', [HorariosController::class, 'getSchedules']);
-//routes citas
-Route::post('/add-citas', [CitasController::class, 'store']);
+//agrupacion de rutas
+Route::group(['middleware' => 'auth'], function(){
+    //routes servicios
+    Route::get('/', function () {
+        return view('welcome');
+    });
+    //routes servicios
+    Route::get('/citas', function () {
+        return view('hist-citas');
+    });
+    Route::get('/getServices', [ServiciosController::class, 'getServices']);
+    Route::get('/getServicesPrice/{id}', [ServiciosController::class, 'getServicesPrice']);
+    //routes barberos
+    Route::get('/getBarbers/{id}', [BarberosController::class, 'getBarbers']);
+    //routes pagos
+    Route::get('/getPayments', [PagosController::class, 'getPayments']);
+    //routes hoararios
+    Route::get('/getSchedules/{id}/{id2}/{dia}', [HorariosController::class, 'getSchedules']);
+    //routes citas
+    Route::post('/add-citas', [CitasController::class, 'store']);
+    Route::get('/getCitas/{filtro}', [CitasController::class, 'getCitas']);
+    //routes cerrar sesion
+    Route::get('/logout', [LoginController::class, 'logout']);
+});

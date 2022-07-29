@@ -21,4 +21,9 @@ class LoginController extends Controller
             return json_encode(['icono' => 'icofont-ui-close', 'color' => 'text-danger', 'titulo' => 'Error!!!', 'mensaje' => 'Correo y/o contraseña incorrectas']);
         }
     }
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        return redirect('/');
+    }
 }

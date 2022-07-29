@@ -23,4 +23,9 @@ class CitasController extends Controller
         Cita::create($data);
         return json_encode(['icono' => 'icofont-ui-check', 'color' => 'text-success', 'titulo' => 'Felicidades!!!', 'mensaje' => 'Cita agendada correctanente']);
     }
+    public function getCitas($filtro)
+    {
+        $citas = Cita::where([['estado', $filtro],['cliente_id', Auth::user()->id]])->with(['clientes', 'barberos', 'pagos', 'servicios', 'horarios'])->get();
+        return json_encode($citas);
+    }
 }

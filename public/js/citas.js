@@ -61,9 +61,11 @@ function getSchedules(){
     const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
     const dias_semana = ['domingo', 'lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado'];
     var dia = new Date(fecha+'T00:00:00');
-    $('#textFecha').html(dias_semana[dia.getDay()] + ', ' + dia.getDate() + ' de ' + meses[dia.getMonth()] + ' de ' + dia.getUTCFullYear());
-    let diaEspanol = dias_semana[dia.getDay()];
     var barbero = $('#barbero_id').val();
+    var diaEspanol = dias_semana[dia.getDay()];
+    if(fecha != ''){
+        $('#textFecha').html(dias_semana[dia.getDay()] + ', ' + dia.getDate() + ' de ' + meses[dia.getMonth()] + ' de ' + dia.getUTCFullYear());
+    }
     $.ajax({
         'type': 'GET',
         'url': '/getSchedules/'+fecha+'/'+barbero+'/'+diaEspanol,
@@ -130,3 +132,59 @@ $('#form-add-citas').submit(function(e){
         }
     });
 });
+function getCitas(filtro){
+    $.ajax({
+        'type': 'GET',
+        'url': '/getCitas/'+filtro,
+        success: function(response){
+            var respuesta = JSON.parse(response);
+            var row = '';
+            var estado ='';
+            var objDia = '';
+            const dias_semana = ['domingo', 'lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado'];
+            $.each(respuesta, function(index, valor){
+                var dia = new Date(valor.fecha+'T00:00:00');
+                var diaEspanol = dias_semana[dia.getDay()];
+                switch(diaEspanol){
+                    case 'lunes':
+                        objDia = valor.horarios.lunes;
+                        break;
+                    case 'martes':
+                        objDia = valor.horarios.martes;
+                        break;
+                    case 'miercoles':
+                        objDia = valor.horarios.miercoles;
+                        break;
+                    case 'jueves':
+                        objDia = valor.horarios.jueves;
+                        break;
+                    case 'viernes':
+                        objDia = valor.horarios.viernes;
+                        break;
+                    case 'sabado':
+                        objDia = valor.horarios.sabado;
+                        break;
+                    case 'domingo':
+                        objDia = valor.horarios.domingo;
+                        break;
+                }
+                switch(valor.estado){
+                    case 'P':
+                        estado = '<span class="badge text-warning border border-warning">Pendiente</span>';
+                        break;
+                    case 'F':
+                        estado = '<span class="badge text-success border border-success">Finalizados</span>';
+                        break;
+                    case 'N':
+                        estado = '<span class="badge text-danger border border-danger">No asistidas</span>';
+                        break;
+                }
+                row += `<tr> <td>${valor.servicios.tipo_servicio}</td> <td>${valor.barberos.nombres}</td> <td>${valor.pagos.tipo_pago}</td> <td>${valor.fecha}</td> <td>${objDia}</td> <td>$${valor.servicios.precio_servicio} MXN</td> <td>${estado}</td> </tr>`
+            });
+            $('#table-citas tbody').html(row);
+            $("#table-citas").paginationTdA({
+                elemPerPage: 5
+            });
+        }
+    })
+}
