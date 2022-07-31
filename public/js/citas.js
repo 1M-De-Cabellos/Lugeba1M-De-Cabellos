@@ -110,28 +110,18 @@ function getSchedules(){
         }
     });
 }
-$('#form-add-citas').submit(function(e){
-    e.preventDefault();
-    var data = $(this).serialize();
-    $.ajax({
-        'type': 'POST',
-        'url': '/add-citas',
-        'data': data,
-        success: function(response){
-            var respuesta = JSON.parse(response);
-            $('#icono').addClass(respuesta.icono+' '+respuesta.color);
-            $('#titulo').html(respuesta.titulo);
-            $('#titulo').addClass('me-auto '+respuesta.color);
-            $('#mensaje').html(respuesta.mensaje);
-            const toastLiveExample = document.getElementById('liveToast');
-            const toast = new bootstrap.Toast(toastLiveExample);
-            toast.show();
-            if(respuesta.icono == 'icofont-ui-check'){
-                $('#form-add-citas').trigger('reset');
-            }
+function cardPayment(){
+    let tipo_pago = $('#pago_id').val();
+    if(tipo_pago == '1'){
+        let tieneClase = $("#col-payment").hasClass("d-none");
+        if(!tieneClase){
+            $('#col-payment').addClass('d-none');
         }
-    });
-});
+    }else{
+        $('#col-payment').removeClass('d-none');
+    }
+    
+}
 function getCitas(filtro){
     $.ajax({
         'type': 'GET',

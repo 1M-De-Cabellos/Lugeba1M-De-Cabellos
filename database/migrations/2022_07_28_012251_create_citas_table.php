@@ -21,7 +21,6 @@ return new class extends Migration
             $table->unsignedBigInteger('servicio_id');
             $table->unsignedBigInteger('horario_id');
             $table->date('fecha');
-            $table->double('precio');
             $table->char('estado', 1);
             $table->timestamps();
             $table->foreign('cliente_id')->references('id')->on('clientes')->onDelete('cascade');
