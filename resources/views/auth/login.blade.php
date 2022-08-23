@@ -38,6 +38,8 @@
                     <input type="checkbox" class="form-check-input" id="exampleCheck1">
                     <label class="form-check-label text-white" for="exampleCheck1">Recordar contraseña</label>
                 </div>
+                <a href="forgot-password" class="text-white">¿Has olvidado tu contraseña?</a>
+                <br><br>
                 <button type="submit" class="btn btn-outline-info w-100">Acceder</button>
             </form>
             <form id="form-registrarme" class="shadow-sm login-form p-4 d-none">
@@ -116,6 +118,13 @@
                         </div>
                     </div>
                 </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" required>
+                    <label class="form-check-label text-white" for="defaultCheck1">
+                      He leído los terminos y condiciones
+                    </label>
+                </div>
+                <br>
                 <button type="submit" class="btn btn-outline-info w-100">Acceder</button>
             </form>
         </div>

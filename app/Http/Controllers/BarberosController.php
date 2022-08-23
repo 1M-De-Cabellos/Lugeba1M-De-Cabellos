@@ -12,4 +12,9 @@ class BarberosController extends Controller
         $barberos = Barbero::where('servicio_id', $id)->with('servicios')->get();
         return json_encode($barberos);
     }
+    public function getBarberPhoto($id)
+    {
+        $barbero = Barbero::where('id', $id)->get();
+        return json_encode($barbero);
+    }
 }

@@ -49,4 +49,10 @@ class CitasController extends Controller
         $citas = Cita::where([['estado', $filtro],['cliente_id', Auth::user()->id]])->with(['clientes', 'barberos', 'pagos', 'servicios', 'horarios'])->get();
         return json_encode($citas);
     }
+    public function cancelar($id)
+    {
+        $cita = Cita::find($id);
+        $cita->estado = 'C';
+        $cita->update();
+    }
 }

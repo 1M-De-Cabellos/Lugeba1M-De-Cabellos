@@ -86,7 +86,7 @@
     <br>
     <h2>Total: <b id="precio"></b></h2>
     <br>
-    <button type="submit" class="btn btn-outline-dark text-white p-4">Realizar cita</button>
+    <button type="submit" class="btn btn-outline-dark text-white p-4 w-50">Realizar cita</button>
 </form>
 @endsection
 @section('script')

@@ -23,6 +23,10 @@ use App\Http\Controllers\CitasController;
 Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
+Route::get('/forgot-password', function () {
+    return view('auth.forgot-password');
+})->name('login');
+Route::post('/recoverPassword', [LoginController::class, 'forgotPassword']);
 //routes clientes
 Route::post('/add-clientes', [ClientesController::class, 'store']);
 Route::post('/login', [LoginController::class, 'login']);
@@ -30,7 +34,7 @@ Route::post('/login', [LoginController::class, 'login']);
 Route::group(['middleware' => 'auth'], function(){
     //routes servicios
     Route::get('/', function () {
-        return view('welcome');
+        return view('index');
     });
     //routes servicios
     Route::get('/citas', function () {
@@ -40,6 +44,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/getServicesPrice/{id}', [ServiciosController::class, 'getServicesPrice']);
     //routes barberos
     Route::get('/getBarbers/{id}', [BarberosController::class, 'getBarbers']);
+    Route::get('/getBarberPhoto/{id}', [BarberosController::class, 'getBarberPhoto']);
     //routes pagos
     Route::get('/getPayments', [PagosController::class, 'getPayments']);
     //routes hoararios
@@ -47,6 +52,7 @@ Route::group(['middleware' => 'auth'], function(){
     //routes citas
     Route::post('/add-citas', [CitasController::class, 'store']);
     Route::get('/getCitas/{filtro}', [CitasController::class, 'getCitas']);
+    Route::get('/cancelar/{id}', [CitasController::class, 'cancelar']);
     //routes cerrar sesion
     Route::get('/logout', [LoginController::class, 'logout']);
 });

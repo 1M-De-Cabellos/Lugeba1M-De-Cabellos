@@ -16,7 +16,6 @@ function getServices(){
     }
 }
 function getBarbers(){
-    var select = $('#barbero_id')[0].children.length;
     var servicio = $('#servicio_id').val();
     $.ajax({
         'type': 'GET',
@@ -33,9 +32,21 @@ function getBarbers(){
             var respuesta = JSON.parse(response);
             var option = '';
             $.each(respuesta, function(index, valor){
-                option += `<option value='${valor.id}'>${valor.nombres} ${valor.apellidos}</option>`;
+                option += `<option value='${valor.id}' style="background:url(../img/${valor.foto}) no-repeat center left; padding-left:20px;">${valor.nombres} ${valor.apellidos}</option>`;
             });
-            $('#barbero_id').html(option);
+            $('#barbero_id').html('<option value="" disabled selected>Elige una opción</option>');
+            $('#barbero_id').append(option);
+        }
+    });
+}
+function getBarberPhoto(){
+    var barbero = $('#barbero_id').val();
+    $.ajax({
+        'type': 'GET',
+        'url': '/getBarberPhoto/'+barbero,
+        success: function(response){
+            var respuesta = JSON.parse(response);
+            $('#foto-barber').prop('src' ,'../img/'+respuesta[0].foto);
         }
     });
 }
@@ -102,7 +113,9 @@ function getSchedules(){
                             break;
                                 
                     }
-                    option += `<option value='${valor.id}'>${objDia}</option>`;
+                    if(objDia != null){
+                        option += `<option value='${valor.id}'>${objDia}</option>`;
+                    }
                 });
             }
             
@@ -118,6 +131,10 @@ function cardPayment(){
             $('#col-payment').addClass('d-none');
         }
     }else{
+        let getPrecio = $('#precio').html().split(' ')[0];
+        let precio = parseInt(getPrecio.slice(1));
+        let = totalPagar = precio + ((precio * 3.7)/100 + 5);
+        $('#precio').html(totalPagar);
         $('#col-payment').removeClass('d-none');
     }
     
@@ -133,6 +150,7 @@ function getCitas(filtro){
             var objDia = '';
             const dias_semana = ['domingo', 'lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado'];
             $.each(respuesta, function(index, valor){
+                filtro;
                 var dia = new Date(valor.fecha+'T00:00:00');
                 var diaEspanol = dias_semana[dia.getDay()];
                 switch(diaEspanol){
@@ -168,13 +186,50 @@ function getCitas(filtro){
                     case 'N':
                         estado = '<span class="badge text-danger border border-danger">No asistidas</span>';
                         break;
+                    case 'C':
+                        estado = '<span class="badge text-secondary border border-secondary">Cancelada</span>';
+                        break;
                 }
-                row += `<tr> <td>${valor.servicios.tipo_servicio}</td> <td>${valor.barberos.nombres}</td> <td>${valor.pagos.tipo_pago}</td> <td>${valor.fecha}</td> <td>${objDia}</td> <td>$${valor.servicios.precio_servicio} MXN</td> <td>${estado}</td> </tr>`
+                if(filtro == 'P'){
+                    let getFecha = new Date();
+                    let hoy = new Date(getFecha.toISOString().split('T')[0]);
+                    let fecha = new Date(valor.fecha);
+                    let resta = fecha - hoy;
+                    let dias = resta/(1000*60*60*24);
+                    if(dias >= 1){
+                        var boton = `<button type="button" class="btn btn-danger" onclick="cancelar(${valor.id})">Cancelar</button>`;
+                    }else{
+                        var boton = '';
+                    }
+                    row += `<tr> <td>${valor.servicios.tipo_servicio}</td> <td>${valor.barberos.nombres}</td> <td>${valor.pagos.tipo_pago}</td> <td>${valor.fecha}</td> <td>${objDia}</td> <td>$${valor.servicios.precio_servicio} MXN</td> <td>${estado}</td> <td>${boton}</td></tr>`
+                }else{
+                    row += `<tr> <td>${valor.servicios.tipo_servicio}</td> <td>${valor.barberos.nombres}</td> <td>${valor.pagos.tipo_pago}</td> <td>${valor.fecha}</td> <td>${objDia}</td> <td>$${valor.servicios.precio_servicio} MXN</td> <td>${estado}</td> </tr>`
+                }
             });
             $('#table-citas tbody').html(row);
             $("#table-citas").paginationTdA({
                 elemPerPage: 5
             });
+        }
+    })
+}
+function cancelar(id){
+    // $('#modal-title').html('Advertencia!!!');
+    // $('#modal-title').addClass('icofont-warning');
+    // $('#modal-title').addClass('text-warning');
+    // $('#modal-text').html('Esta seguro de cancelar la cita, si realizo el pago con targeta, el costo por el servicio no se le devolvera');
+    // $('#footer-botones').append('<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="confirmCancel()">Confirmar</button>');
+    // $('#exampleModal').modal('show');
+    $.ajax({
+        'type': 'GET',
+        'url': 'cancelar/'+id,
+        success:function(){
+            $('#modal-title').html('Cita cancelada');
+            $('#modal-title').addClass('icofont-check');
+            $('#modal-title').addClass('text-success');
+            $('#modal-text').html('La cita ha sido cancelada');
+            $('#exampleModal').modal('show');
+            getCitas('P');
         }
     })
 }

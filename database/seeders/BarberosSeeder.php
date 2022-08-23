@@ -24,6 +24,7 @@ class BarberosSeeder extends Seeder
                 'num_telefonico'    => '9191225809',
                 'email'             => 'jose@gmail.com',
                 'password'          => Hash::make(1234),
+                'foto'              => 'broli.jpg',
             ],
             [
                 'servicio_id'       => 1,
@@ -32,6 +33,7 @@ class BarberosSeeder extends Seeder
                 'num_telefonico'    => '9191513420',
                 'email'             => 'miguel@gmail.com',
                 'password'          => Hash::make(1234),
+                'foto'              => 'goku.png',
             ],
             [
                 'servicio_id'       => 2,
@@ -40,6 +42,7 @@ class BarberosSeeder extends Seeder
                 'num_telefonico'    => '9191379087',
                 'email'             => 'pedro@gmail.com',
                 'password'          => Hash::make(1234),
+                'foto'              => 'vegueta.png',
             ],
         ];
         DB::table('barberos')->insert($datos);

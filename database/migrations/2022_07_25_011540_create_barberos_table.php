@@ -21,6 +21,7 @@ return new class extends Migration
             $table->char('num_telefonico', 10);
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('foto');
             $table->rememberToken();
             $table->timestamps();
             $table->foreign('servicio_id')->references('id')->on('servicios')->onDelete('cascade');
