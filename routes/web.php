@@ -25,7 +25,7 @@ Route::get('/login', function () {
 })->name('login');
 Route::get('/forgot-password', function () {
     return view('auth.forgot-password');
-})->name('login');
+});
 Route::post('/recoverPassword', [LoginController::class, 'forgotPassword']);
 //routes clientes
 Route::post('/add-clientes', [ClientesController::class, 'store']);
