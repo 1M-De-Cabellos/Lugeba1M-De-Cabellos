@@ -119,11 +119,12 @@
                     </div>
                 </div>
                 <div class="form-check">
+                <a href="https://1m-de-cabellos-politicas.000webhostapp.com/" target="_blank" class="text-white">Visita nuestros términos y condiciones </a><br>
                     <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" required>
                     <label class="form-check-label text-white" for="defaultCheck1">
-                      He leído los terminos y condiciones
+                      He leído los términos y condiciones
                     </label>
-                </div>
+                    </div>
                 <br>
                 <button type="submit" class="btn btn-outline-info w-100">Acceder</button>
             </form>
