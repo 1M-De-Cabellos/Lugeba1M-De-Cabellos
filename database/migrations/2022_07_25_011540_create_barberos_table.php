@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('foto');
+            $table->string('api_token')->nullable(true);
             $table->rememberToken();
             $table->timestamps();
             $table->foreign('servicio_id')->references('id')->on('servicios')->onDelete('cascade');

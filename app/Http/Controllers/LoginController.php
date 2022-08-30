@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use App\Notifications\Lugeba;
 use App\Models\Cliente;
+use App\Models\Barbero;
 
 class LoginController extends Controller
 {
@@ -43,5 +44,33 @@ class LoginController extends Controller
             return json_encode(['icono' => 'icofont-error', 'color' => 'text-danger', 'titulo' => 'Error!!!', 'mensaje' => 'Ocurrio un error al enviar la contraseña']);
 
         }
+    }
+    public function serviceForgotPassword(Request $request)
+    {
+        $user = Barbero::where('email', $request->all()['email'])->first();
+        $password = Str::random(20);
+        $user->password = Hash::make($password);
+        $user->update();
+        try{
+            $user->notify(new Lugeba($password));//envia el correo de virifación al correo dado
+            return json_encode(['icono' => 'icofont-ui-check', 'color' => 'text-success', 'titulo' => 'Felicidades!!!', 'mensaje' => 'La contraseña fue enviada al correo '.$request->all()['email']]);
+        } catch(Exepcion $e){
+            return json_encode(['icono' => 'icofont-error', 'color' => 'text-danger', 'titulo' => 'Error!!!', 'mensaje' => 'Ocurrio un error al enviar la contraseña']);
+
+        }
+    }
+    public function serviceLogin(Request $request)
+    {
+        $request->validate([
+                'email'     => 'required',
+                'password'  => 'required'
+        ]);
+        $credenciales = $request->only('email', 'password');
+        if(Auth::guard('web')->attempt($credenciales)){
+            $token = Str::random(60);
+            Auth::guard('web')->user()->forceFill(['api_token' => hash('sha256', $token)])->save();
+            return json_encode(['datos' =>Auth::guard('web')->user() ,'apiToken' => $token]);
+        }
+        return json_encode(['icono' => 'icofont-ui-close', 'color' => 'text-danger', 'titulo' => 'Error!!!', 'mensaje' => 'Correo y/o contraseña incorrectas']);
     }
 }

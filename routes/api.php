@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\CitasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +19,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::middleware('auth:api')->group(function(){
+    Route::get('/serviceCitas', [CitasController::class, 'serviceCitas']);
+});
+Route::get('/serviceLogin', [LoginController::class, 'serviceLogin']);
+Route::get('/serviceForgotPassword', [LoginController::class, 'serviceForgotPassword']);

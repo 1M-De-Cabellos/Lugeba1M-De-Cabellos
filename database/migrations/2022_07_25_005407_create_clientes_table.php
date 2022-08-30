@@ -21,6 +21,7 @@ return new class extends Migration
             $table->char('num_telefonico', 10)->nullable(false)->unique(true);
             $table->string('email')->nullable(false)->unique(true);
             $table->string('password')->nullable(false);
+            $table->string('api_token')->nullable(true);
             $table->rememberToken();
             $table->timestamps();
         });

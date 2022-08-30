@@ -55,4 +55,12 @@ class CitasController extends Controller
         $cita->estado = 'C';
         $cita->update();
     }
+    public function serviceCitas(Request $request)
+    {
+        if(Auth::user() != null)
+        {
+            $citasPend = Cita::where('estado', 'P')->orderBy('fecha')->get();
+            return json_encode($citasPend);
+        }
+    }
 }

@@ -38,12 +38,17 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'barberos',
         ],
         'web2' => [
             'driver' => 'session',
             'provider' => 'clientes',
         ],
+        'api' => [
+            'driver' => 'token',
+            'provider' => 'clientes',
+            'hash' => true
+        ]
     ],
 
     /*
@@ -64,9 +69,9 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'barberos' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => App\Models\Barbero::class,
         ],
         'clientes' => [
             'driver' => 'eloquent',
