@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <title>Document</title>
+    <title>1M De Cabellos - Inicio de sesión / Registrarse</title>
+    <link rel="icon" href="img/SinfondoN.png">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/config.css') }}">
     <link rel="stylesheet" href="{{ asset('icofont/icofont.min.css') }}">

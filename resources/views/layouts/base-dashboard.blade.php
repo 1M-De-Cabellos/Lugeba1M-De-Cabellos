@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <title>Document</title>
+    <title>1M De Cabellos</title>
+    <link rel="icon" href="img/SinfondoN.png">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/config.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
@@ -16,8 +17,8 @@
         <!-- partial:partials/_sidebar.html -->
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
           <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-            <a class="sidebar-brand brand-logo" href="/"><img src="{{ asset('img/logo.jpeg') }}" alt="logo" style="max-width: 120px !important; min-height: 60px !important;" /></a>
-            <a class="sidebar-brand brand-logo-mini" href="/"><img src="{{ asset('img/logo.jpeg') }}" alt="logo" /></a>
+            <a class="sidebar-brand brand-logo" href="/"><img src="{{ asset('img/SinfondoB.png') }}" alt="logo" style="max-width: 120px !important; min-height: 60px !important;" /></a>
+            <a class="sidebar-brand brand-logo-mini" href="/"><img src="{{ asset('img/SinfondoB.png') }}" alt="logo" /></a>
           </div>
           <ul class="nav">
             <li class="nav-item profile">
@@ -95,7 +96,7 @@
           <!-- partial:partials/_navbar.html -->
           <nav class="navbar p-0 fixed-top d-flex flex-row">
             <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-              <a class="navbar-brand brand-logo-mini" href="/"><img src="{{ asset('img/logo.jpeg') }}" alt="logo" style="min-width: 140px !important; min-height: 60px !important;"/></a>
+              <a class="navbar-brand brand-logo-mini" href="/"><img src="{{ asset('img/SinfondoB.png') }}" alt="logo" style="min-width: 140px !important; min-height: 60px !important;"/></a>
             </div>
             <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
               <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -125,7 +126,7 @@
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item preview-item">
                       <div class="preview-thumbnail">
-                        <img src="{{ asset('img/logo.jpeg') }}" alt="image" class="rounded-circle profile-pic">
+                        <img src="{{ asset('img/SinfondoB.png') }}" alt="image" class="rounded-circle profile-pic">
                       </div>
                       <div class="preview-item-content">
                         <p class="preview-subject ellipsis mb-1">Cita agendada</p>
