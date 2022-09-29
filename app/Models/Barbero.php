@@ -14,6 +14,7 @@ class Barbero extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
     protected $fillable = [
+        'servicio_id',
         'nombres',
         'apellidos',
         'num_telefonico',

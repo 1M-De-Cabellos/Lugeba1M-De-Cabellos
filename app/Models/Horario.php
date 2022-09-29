@@ -9,12 +9,7 @@ class Horario extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'domingo',
-        'lunes',
-        'martes',
-        'miercoles',
-        'jueves',
-        'viernes',
-        'sabado',
+        'dia',
+        'horario',
     ];
 }

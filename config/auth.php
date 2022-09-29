@@ -46,7 +46,7 @@ return [
         ],
         'api' => [
             'driver' => 'token',
-            'provider' => 'clientes',
+            'provider' => 'barberos',
             'hash' => true
         ]
     ],

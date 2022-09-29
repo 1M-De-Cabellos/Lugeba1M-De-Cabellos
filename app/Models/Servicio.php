@@ -10,7 +10,7 @@ class Servicio extends Model
     use HasFactory;
     protected $fillable = [
         'tipo_servicio',
-        'duracion_servicio',
+        'duracion',
         'precio_servicio',
     ];
 }

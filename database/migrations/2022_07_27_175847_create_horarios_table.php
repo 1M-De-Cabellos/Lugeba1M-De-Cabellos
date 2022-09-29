@@ -15,13 +15,8 @@ return new class extends Migration
     {
         Schema::create('horarios', function (Blueprint $table) {
             $table->id();
-            $table->string('domingo', 20)->nullable(true)->default(null);
-            $table->string('lunes', 20)->nullable(true)->default(null);
-            $table->string('martes', 20)->nullable(true)->default(null);
-            $table->string('miercoles', 20)->nullable(true)->default(null);
-            $table->string('jueves', 20)->nullable(true)->default(null);
-            $table->string('viernes', 20)->nullable(true)->default(null);
-            $table->string('sabado', 20)->nullable(true)->default(null);
+            $table->enum('dia', ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'])->nullable(true)->default(null);
+            $table->string('horario', 30)->nullable(true)->default(null);
             $table->timestamps();
         });
     }

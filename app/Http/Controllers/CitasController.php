@@ -63,4 +63,18 @@ class CitasController extends Controller
             return json_encode($citasPend);
         }
     }
+    public function serviceGetCitas(Request $request)
+    {
+        $data = $request->all();
+        $citas = Cita::where([['fecha', $data['fecha']], ['estado', $data['filtro']]])->with(['clientes', 'barberos', 'pagos', 'servicios', 'horarios'])->get();
+        return json_encode(['datos' => $citas]);
+    }
+    public function serviceEditCita(Request $request)
+    {
+        $data = $request->all();
+        $cita = Cita::find($data['id']);
+        $cita->estado = $data['estado'];
+        $cita->save();
+        return json_encode(['datos' => 'Cita actualizada']);
+    }
 }

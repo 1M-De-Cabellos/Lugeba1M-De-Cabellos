@@ -83,39 +83,11 @@ function getSchedules(){
         success: function(response){
             var respuesta= JSON.parse(response);
             var option = '';
-            var objDia;
             if(respuesta.length == 0){
                 option += `<option value='' disabled selected>Sin horarios disponibles</option>`;
             }else{
                 $.each(respuesta, function(index, valor){
-                    diaEspanol
-                    switch(diaEspanol){
-                        case 'lunes':
-                            objDia = valor.lunes;
-                            break;
-                        case 'martes':
-                            objDia = valor.martes;
-                            break;
-                        case 'miercoles':
-                            objDia = valor.miercoles;
-                            break;
-                        case 'jueves':
-                            objDia = valor.jueves;
-                            break;
-                        case 'viernes':
-                            objDia = valor.viernes;
-                            break;
-                        case 'sabado':
-                            objDia = valor.sabado;
-                            break;
-                        case 'domingo':
-                            objDia = valor.domingo;
-                            break;
-                                
-                    }
-                    if(objDia != null){
-                        option += `<option value='${valor.id}'>${objDia}</option>`;
-                    }
+                    option += `<option value='${valor.id}'>${valor.horario}</option>`;
                 });
             }
             
