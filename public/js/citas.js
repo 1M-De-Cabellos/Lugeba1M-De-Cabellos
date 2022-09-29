@@ -120,34 +120,9 @@ function getCitas(filtro){
             var row = '';
             var estado ='';
             var objDia = '';
-            const dias_semana = ['domingo', 'lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado'];
             $.each(respuesta, function(index, valor){
                 filtro;
-                var dia = new Date(valor.fecha+'T00:00:00');
-                var diaEspanol = dias_semana[dia.getDay()];
-                switch(diaEspanol){
-                    case 'lunes':
-                        objDia = valor.horarios.lunes;
-                        break;
-                    case 'martes':
-                        objDia = valor.horarios.martes;
-                        break;
-                    case 'miercoles':
-                        objDia = valor.horarios.miercoles;
-                        break;
-                    case 'jueves':
-                        objDia = valor.horarios.jueves;
-                        break;
-                    case 'viernes':
-                        objDia = valor.horarios.viernes;
-                        break;
-                    case 'sabado':
-                        objDia = valor.horarios.sabado;
-                        break;
-                    case 'domingo':
-                        objDia = valor.horarios.domingo;
-                        break;
-                }
+
                 switch(valor.estado){
                     case 'P':
                         estado = '<span class="badge text-warning border border-warning">Pendiente</span>';
@@ -173,9 +148,9 @@ function getCitas(filtro){
                     }else{
                         var boton = '';
                     }
-                    row += `<tr> <td>${valor.servicios.tipo_servicio}</td> <td>${valor.barberos.nombres}</td> <td>${valor.pagos.tipo_pago}</td> <td>${valor.fecha}</td> <td>${objDia}</td> <td>$${valor.servicios.precio_servicio} MXN</td> <td>${estado}</td> <td>${boton}</td></tr>`
+                    row += `<tr> <td>${valor.servicios.tipo_servicio}</td> <td>${valor.barberos.nombres}</td> <td>${valor.pagos.tipo_pago}</td> <td>${valor.fecha}</td> <td>${valor.horarios.horario}</td> <td>$${valor.servicios.precio_servicio} MXN</td> <td>${estado}</td> <td>${boton}</td></tr>`
                 }else{
-                    row += `<tr> <td>${valor.servicios.tipo_servicio}</td> <td>${valor.barberos.nombres}</td> <td>${valor.pagos.tipo_pago}</td> <td>${valor.fecha}</td> <td>${objDia}</td> <td>$${valor.servicios.precio_servicio} MXN</td> <td>${estado}</td> </tr>`
+                    row += `<tr> <td>${valor.servicios.tipo_servicio}</td> <td>${valor.barberos.nombres}</td> <td>${valor.pagos.tipo_pago}</td> <td>${valor.fecha}</td> <td>${valor.horarios.horario}</td> <td>$${valor.servicios.precio_servicio} MXN</td> <td>${estado}</td> </tr>`
                 }
             });
             $('#table-citas tbody').html(row);
