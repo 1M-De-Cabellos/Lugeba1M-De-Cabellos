@@ -30,6 +30,7 @@ Route::middleware('auth:api')->group(function(){
     Route::put('/serviceEditProfile', [BarberosController::class, 'serviceEditProfile']);
     Route::put('/serviceCambiarPass', [BarberosController::class, 'serviceCambiarPass']);
     Route::put('/serviceCambiarFoto', [BarberosController::class, 'serviceCambiarFoto']);
+    Route::get('/serviceGetBarbers/{id}', [BarberosController::class, 'serviceGetBarbers']);
     //servicios
     Route::get('/serviceServicios', [ServiciosController::class, 'serviceServicios']);
     Route::post('/serviceAddServicios', [ServiciosController::class, 'store']);
