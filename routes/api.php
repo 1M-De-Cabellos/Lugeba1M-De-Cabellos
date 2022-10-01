@@ -38,10 +38,12 @@ Route::middleware('auth:api')->group(function(){
     Route::get('/serviceHorarios', [HorariosController::class, 'serviceHorarios']);
     Route::post('/serviceAddHorarios', [HorariosController::class, 'store']);
     Route::put('/serviceEditHorario', [HorariosController::class, 'serviceEditHorario']);
+    Route::get('/servciceGetSchedules/{id}/{id2}/{dia}', [HorariosController::class, 'servciceGetSchedules']);
     //citas
     Route::get('/serviceGetCitas', [CitasController::class, 'serviceGetCitas']);
-    Route::post('/serviceAddCitas', [CitasController::class, 'store']);
+    Route::post('/serviceAddCitas', [CitasController::class, 'addCitas']);
     Route::put('/serviceEditCita', [CitasController::class, 'serviceEditCita']);
+    Route::get('/serviceGetCitasByBarbero/', [CitasController::class, 'serviceGetCitasByBarbero']);
 });
 Route::get('/serviceLogin', [LoginController::class, 'serviceLogin']);
 Route::get('/serviceForgotPassword', [LoginController::class, 'serviceForgotPassword']);

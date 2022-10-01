@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('foto');
+            $table->boolean('esAdmin');
             $table->string('api_token')->nullable(true);
             $table->rememberToken();
             $table->timestamps();

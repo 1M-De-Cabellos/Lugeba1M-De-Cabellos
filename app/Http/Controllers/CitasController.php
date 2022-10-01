@@ -69,6 +69,12 @@ class CitasController extends Controller
         $citas = Cita::where([['fecha', $data['fecha']], ['estado', $data['filtro']]])->with(['clientes', 'barberos', 'pagos', 'servicios', 'horarios'])->get();
         return json_encode(['datos' => $citas]);
     }
+    public function serviceGetCitasByBarbero(Request $request)
+    {
+        $data = $request->all();
+        $citas = Cita::where([['barbero_id', $data['barbero_id']], ['fecha', $data['fecha']], ['estado', $data['filtro']]])->with(['clientes', 'barberos', 'pagos', 'servicios', 'horarios'])->get();
+        return json_encode(['datos' => $citas]);
+    }
     public function serviceEditCita(Request $request)
     {
         $data = $request->all();
@@ -76,5 +82,28 @@ class CitasController extends Controller
         $cita->estado = $data['estado'];
         $cita->save();
         return json_encode(['datos' => 'Cita actualizada']);
+    }
+    public function addCitas(Request $request)
+    {
+        $request->validate([
+            'barbero_id'        => 'required',
+            'servicio_id'       => 'required',
+            'horario_id'        => 'required',
+            'fecha'             => 'required'
+        ]);
+        $data = $request->all();
+        $datos = [
+            'cliente_id' => 1,
+            'barbero_id' => $data['barbero_id'],
+            'pago_id' => 1,    
+            'servicio_id' => $data['servicio_id'],
+            'horario_id' => $data['horario_id'],
+            'fecha' => $data['fecha'],
+            'estado' => 'P',
+
+        ];
+        Cita::create($datos);
+        return json_encode(['datos' => 'Cita agendada']);
+        
     }
 }

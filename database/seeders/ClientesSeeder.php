@@ -18,6 +18,14 @@ class ClientesSeeder extends Seeder
     {
         $datos = [
             [
+                'nombres'           => 'Cliente',
+                'apellidos'         => 'Genereal',
+                'fecha_nac'         => '2000-01-01',
+                'num_telefonico'    => '0000000000',
+                'email'             => 'general@gmail.com',
+                'password'          => Hash::make(1234),
+            ],
+            [
                 'nombres'           => 'Jose',
                 'apellidos'         => 'López',
                 'fecha_nac'         => '2001-07-07',

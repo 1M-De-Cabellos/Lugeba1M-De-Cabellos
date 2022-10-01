@@ -45,4 +45,10 @@ class HorariosController extends Controller
         $horario->update($data);
         return json_encode(['datos' => 'Horario actualizado']);
     }
+    public function servciceGetSchedules($id, $id2, $dia)
+    {
+        $sql = "SELECT id, dia, horario FROM horarios WHERE NOT exists (SELECT citas.id FROM citas WHERE citas.horario_id = horarios.id AND citas.barbero_id = {$id2}  AND citas.fecha = '{$id}' AND citas.estado = 'P') AND horarios.dia = '{$dia}' ";
+        $horarios = DB::select($sql);
+        return json_encode(['datos' => $horarios]);
+    }
 }

@@ -91,4 +91,9 @@ class BarberosController extends Controller
         $barbero->save();
         return json_encode(['datos' => 'Foto actualizada', 'foto' => $imgName]);
     }
+    public function serviceGetBarbers($id)
+    {
+        $barberos = Barbero::where('servicio_id', $id)->with('servicios')->get();
+        return json_encode(['datos' => $barberos]);
+    }
 }
