@@ -68,7 +68,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label for="" class="form-label text-white">F.Nacimiento</label>
+                            <label for="" class="form-label text-white">Fecha de Nacimiento</label>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon2"><i class="icofont-calendar"></i></span>
                                 <input type="date" class="form-control" name="fecha_nac" required autocomplete="off">
