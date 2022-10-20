@@ -87,7 +87,7 @@
                     </div>
                     <div class="col-md-12">
                         <div class="mb-3">
-                            <label for="" class="form-label text-white">Correo</label>
+                            <label for="" class="form-label text-white">Correo electronico</label>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon2"><i class="icofont-email"></i></span>
                                 <input type="email" class="form-control" name="email" placeholder="Correo" required
