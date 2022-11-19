@@ -51,7 +51,7 @@
                                 <span class="input-group-text" id="basic-addon2"><i
                                         class="icofont-sound-wave"></i></span>
                                 <input type="text" class="form-control" name="nombres" placeholder="Nombres" required
-                                    autocomplete="off">
+                                    autocomplete="off" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" title="Solo letras sin numeros">
                             </div>
                         </div>
                     </div>
@@ -62,13 +62,13 @@
                                 <span class="input-group-text" id="basic-addon2"><i
                                         class="icofont-sound-wave"></i></span>
                                 <input type="text" class="form-control" name="apellidos" placeholder="Apellidos"
-                                    required autocomplete="off">
+                                    required autocomplete="off" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" title="Solo letras sin numeros">
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label for="" class="form-label text-white">F.Nacimiento</label>
+                            <label for="" class="form-label text-white">Fecha de Nacimiento</label>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon2"><i class="icofont-calendar"></i></span>
                                 <input type="date" class="form-control" name="fecha_nac" required autocomplete="off">
@@ -81,7 +81,7 @@
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon2"><i class="icofont-phone"></i></span>
                                 <input type="text" class="form-control" name="num_telefonico" placeholder="Télefono"
-                                    required autocomplete="off">
+                                    required autocomplete="off" minlength="10" maxlength="10" pattern="^[0-9]+" title="Solo numeros de 10 dígitos">
                             </div>
                         </div>
                     </div>
